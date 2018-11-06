@@ -1,6 +1,9 @@
 package com.banana.y17_2.promo;
 
+import android.content.Intent;
+import android.os.Build;
 import android.os.Handler;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,7 +12,11 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.bumptech.glide.TransitionOptions;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -18,9 +25,10 @@ import me.relex.circleindicator.CircleIndicator;
 
 public class MainActivity extends AppCompatActivity {
     TextView My_Account_Button;
-    ImageView Filters_Button;
+    ImageView FiltersButton;
     Button Discover_More_Button;
-    Timer swipeTimer;
+    RelativeLayout rootContainer;
+    Timer swipeTimer = new Timer();
 
     ViewPager viewPager;
 
@@ -30,36 +38,51 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        viewPager = findViewById(R.id.View_Pager);
-        final ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
-        viewPager.setAdapter(viewPagerAdapter);
 
+
+        viewPager = findViewById(R.id.View_Pager);
         final CircleIndicator indicator = findViewById(R.id.indicator);
+        My_Account_Button = findViewById(R.id.My_Account_Button);
+        FiltersButton = findViewById(R.id.Filters_Button);
+        Discover_More_Button = findViewById(R.id.Discover_More_Button);
+        rootContainer = findViewById(R.id.Root_container);
+
+        final ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(this);
+        viewPager.setAdapter(viewPagerAdapter);
+        //viewPager.setPageTransformer(true, new ZoomOutPageTransformer()); //Кастомная анимация смены картинок
+
         indicator.setViewPager(viewPager);
 
-        My_Account_Button = findViewById(R.id.My_Account_Button);
-        Filters_Button = findViewById(R.id.Filters_Button);
-        Discover_More_Button = findViewById(R.id.Discover_More_Button);
-
-        viewPager.setPageTransformer(true, new ZoomOutPageTransformer());
         swipeImage();
 
-        findViewById(R.id.Root_container).setOnClickListener(new View.OnClickListener() {
+/*
+        viewPager.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Toast.makeText(MainActivity.this, "ACTION DOWN", Toast.LENGTH_SHORT).show();
                 swipeTimer.cancel();
+                swipeImage();
             }
         });
+*/
 
-       /*
-        if(savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.Frame_Layout, new Fragment2(), null).commit();
-        }
-        */
+        Discover_More_Button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, Activity2.class);
+                ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(MainActivity.this, FiltersButton, "Filters_Button_Transition");
+                startActivity(intent, options.toBundle());
+
+            }
+        });
 
 
     }
 
+
+    /**
+     * Метод для автоматической смены картинки
+     */
     public void swipeImage() {
         if (swipeTimer != null) {
             swipeTimer.cancel();
@@ -68,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
         final Runnable Update = new Runnable() {
             public void run() {
                 int i = viewPager.getCurrentItem() + 1;
-                if (i > 4) {
+                if (i > Database.Objs.length - 1) {
                     i = 0;
                 }
                 viewPager.setCurrentItem(i, true);
@@ -84,31 +107,9 @@ public class MainActivity extends AppCompatActivity {
         }, 5000, 5000);
     }
 
-    public class ZoomOutPageTransformer implements ViewPager.PageTransformer {
-        private static final float MIN_SCALE = 0.85f;
-        private static final float MIN_ALPHA = 0.5f;
-
-        public void transformPage(View view, float position) {
-            int pageWidth = view.getWidth();
-            int pageHeight = view.getHeight();
-
-            if (position < -1) { // [-Infinity,-1)
-                // This page is way off-screen to the left.
-                view.setAlpha(0);
-
-            } else if (position <= 1) { // [-1,1]
-
-                view.setRotation(360 * position);
 
 
 
-
-            } else { // (1,+Infinity]
-                // This page is way off-screen to the right.
-                view.setAlpha(0);
-            }
-        }
-    }
 
 }
 

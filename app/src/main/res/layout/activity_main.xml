@@ -52,7 +52,8 @@
             android:id="@+id/Filters_Button"
             android:layout_centerVertical="true"
             android:layout_marginRight="24dp"
-            android:layout_alignParentRight="true"/>
+            android:layout_alignParentRight="true"
+            android:transitionName="Filters_Button_Transition"/>
 
     </RelativeLayout>
 
@@ -76,6 +77,14 @@
         android:layout_width="match_parent"
         android:layout_height="48dp"
         />
+
+
+    <FrameLayout
+        android:id="@+id/Frame_Layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </FrameLayout>
 
 
 </RelativeLayout>
