@@ -8,6 +8,7 @@ import android.os.Build;
 import android.os.Handler;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -47,11 +48,12 @@ public class MainActivity extends AppCompatActivity {
 
     ViewPager viewPager;
 
-
     int width;
     int height;
 
-    FrameLayout frameLayout;
+
+    ImageView ViewPagerImageView;
+
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
@@ -68,9 +70,10 @@ public class MainActivity extends AppCompatActivity {
         FiltersButton = findViewById(R.id.Filters_Button);
         Discover_More_Button = findViewById(R.id.Discover_More_Button);
         rootContainer = findViewById(R.id.Root_container);
-        frameLayout = findViewById(R.id.Frame_Layout);
+        
 
-
+        ViewPagerImageView = findViewById(R.id.View_Pager_Image_view);
+        ViewPagerImageView.setVisibility(View.GONE);
 
         //Получаем размеры экрана в пикселях(в данном случае только ширину)
         rootContainer.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
@@ -102,14 +105,21 @@ public class MainActivity extends AppCompatActivity {
         Discover_More_Button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //int ResIDnum = viewPager.getCurrentItem();
-                //final Obj obj = Database.Objs[ResIDnum];
-                //int ResID = obj.resId;
-
+                int ResIDnum = viewPager.getCurrentItem();
+                final Obj obj = Database.Objs[ResIDnum];
+                int ResID = obj.resId;
                 Intent intent = new Intent(MainActivity.this, Activity2.class);
-                //intent.putExtra("ResID", ResID);
+                intent.putExtra("ResID", ResID);
+                ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(MainActivity.this, ViewPagerImageView,"transition_name");
+
+                startActivity(intent, options.toBundle());
+/*
+                Intent intent = new Intent(MainActivity.this, Activity2.class);
+
                 ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(MainActivity.this, FiltersButton, "Filters_Button_Transition");
                 startActivity(intent, options.toBundle());
+*/
+
 
             }
         });

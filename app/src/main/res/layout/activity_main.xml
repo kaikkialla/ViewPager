@@ -6,7 +6,7 @@
     tools:context=".MainActivity"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#001122"
+    android:background="#001133"
     android:id="@+id/Root_container">
 
 
@@ -17,7 +17,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:background="#001122" />
+        android:background="#001122"/>
+
+
+    <ImageView
+        android:id="@+id/View_Pager_Image_view"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:transitionName="transition_name"
+        android:layout_centerInParent="true"
+        />
 
 
 

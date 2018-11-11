@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activity2">
+    tools:context=".Activity2"
+    android:background="#001133">
 
     <ImageView
         android:id="@+id/imageView"
@@ -13,6 +14,6 @@
         android:scaleType="fitCenter"
         android:layout_centerInParent="true"
         android:src="@drawable/ic_filter_list_black_24dp"
-        android:transitionName="Filters_Button_Transition"/>
+        android:transitionName="transition_name"/>
 
 </RelativeLayout>
