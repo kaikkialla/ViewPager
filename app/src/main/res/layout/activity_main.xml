@@ -2,28 +2,22 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/Root_container"
     xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".MainActivity"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:background="#001122"
+    android:id="@+id/Root_container">
+
 
 
 
     <android.support.v4.view.ViewPager
         android:id="@+id/View_Pager"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-<!--        <android.support.v4.view.PagerTabStrip
-            android:id="@+id/Pager_Tab_Strip"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-            -->
-
-
-
-    </android.support.v4.view.ViewPager>
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:background="#001122" />
 
 
 
@@ -34,9 +28,9 @@
         android:id="@+id/Header">
 
         <TextView
+            android:id="@+id/My_Account_Button"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:id="@+id/My_Account_Button"
             android:layout_marginLeft="24dp"
             android:textSize="12dp"
             android:textColor="#fff"
@@ -46,10 +40,10 @@
             android:layout_centerVertical="true"/>
 
         <ImageView
+            android:id="@+id/Filters_Button"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:background="@drawable/ic_filter_list_black_24dp"
-            android:id="@+id/Filters_Button"
             android:layout_centerVertical="true"
             android:layout_marginRight="24dp"
             android:layout_alignParentRight="true"
@@ -76,6 +70,8 @@
         android:id="@+id/indicator"
         android:layout_width="match_parent"
         android:layout_height="48dp"
+        app:ci_drawable="@drawable/circle_indicator_bg_pattern"
+
         />
 
 

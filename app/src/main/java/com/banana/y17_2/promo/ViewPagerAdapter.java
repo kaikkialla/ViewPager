@@ -2,6 +2,7 @@ package com.banana.y17_2.promo;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.media.Image;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -29,6 +30,7 @@ public class ViewPagerAdapter extends PagerAdapter {//Для обычного vi
 
 
     private Context mContext;
+    public static ImageView imageView;
 
     public ViewPagerAdapter(Context context) {
         mContext = context;
@@ -39,7 +41,7 @@ public class ViewPagerAdapter extends PagerAdapter {//Для обычного vi
         LayoutInflater inflater = LayoutInflater.from(mContext);
         ViewGroup layout = (ViewGroup) inflater.inflate(R.layout.pager_adapter_layout, collection, false);
         collection.addView(layout);
-        ImageView imageView = layout.findViewById(R.id.img);
+        imageView = layout.findViewById(R.id.img);
 
         final Obj obj = Database.Objs[position];
         imageView.setImageResource(obj.resId);
@@ -53,7 +55,7 @@ public class ViewPagerAdapter extends PagerAdapter {//Для обычного vi
 
     @Override
     public int getCount() {
-        return 3;
+        return Database.Objs.length;
     }
 
     @Override

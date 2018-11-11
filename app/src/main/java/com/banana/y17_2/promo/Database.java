@@ -6,7 +6,9 @@ package com.banana.y17_2.promo;
 
 public class Database {
     public static Obj[] Objs = {
-            new Obj(R.drawable.a),
-            new Obj(R.drawable.b)
-            , new Obj(R.drawable.c)};
+            new Obj(R.drawable.juicewrld),
+            new Obj(R.drawable.lilmosey),
+            new Obj(R.drawable.richthekid),
+            new Obj(R.drawable.tekashi),
+            new Obj(R.drawable.travisscott)};
 }

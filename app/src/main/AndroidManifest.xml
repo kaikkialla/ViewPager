@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.banana.y17_2.promo">
 
     <application
@@ -15,8 +16,13 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
         <activity android:name=".Activity2"></activity>
+        <service
+            android:name=".RSSPullService"
+            android:exported="false"
+            tools:ignore="WrongManifestParent" />
     </application>
 
 </manifest>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--
+    Viewpager_margin = -2 * viewpager_margin_fix, иначе будет деформация картинки
+    Чем больше значение - тем меньше расстояние между элементами
+    -->
+
+
+
+    <dimen name="viewpager_margin">-160dp</dimen>
+    <dimen name="viewpager_margin_fix">80dp</dimen>
+</resources>
